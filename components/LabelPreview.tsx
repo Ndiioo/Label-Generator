@@ -49,18 +49,18 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
   return (
     <div className="label-font w-[100mm] h-[100mm] bg-white text-black relative p-0 flex flex-col overflow-hidden mx-auto select-none print:m-0 print:border-0 shadow-sm">
       
-      {/* Outer Decorative Tracking Numbers */}
+      {/* Outer Decorative Tracking Numbers - CHANGED TO font-normal */}
       <div className="absolute top-0 left-0 right-0 h-[12px] flex items-center justify-between whitespace-nowrap bg-white z-30 overflow-hidden px-12">
-        {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-bold">{data.resiNumber}</span>)}
+        {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-normal">{data.resiNumber}</span>)}
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-[12px] flex items-center justify-between whitespace-nowrap bg-white z-30 overflow-hidden px-12">
-        {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-bold">{data.resiNumber}</span>)}
+        {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-normal">{data.resiNumber}</span>)}
       </div>
       <div className="absolute top-0 bottom-0 left-0 w-[12px] flex flex-col items-center justify-between whitespace-nowrap bg-white z-30 overflow-hidden py-12">
-        {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-bold transform -rotate-90 block">{data.resiNumber}</span>)}
+        {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-normal transform -rotate-90 block">{data.resiNumber}</span>)}
       </div>
       <div className="absolute top-0 bottom-0 right-0 w-[12px] flex flex-col items-center justify-between whitespace-nowrap bg-white z-30 overflow-hidden py-12">
-        {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-bold transform -rotate-90 block">{data.resiNumber}</span>)}
+        {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-normal transform -rotate-90 block">{data.resiNumber}</span>)}
       </div>
 
       {/* Main Border Box Wrapper */}
@@ -129,19 +129,19 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
              </span>
            </div>
 
-           {/* Penerima Section - Expanded to 58% for more address space */}
+           {/* Penerima Section */}
            <div className="w-[58%] p-2 flex flex-col z-10 overflow-hidden relative">
               <span className="text-[9px] font-black mb-0.5">Penerima:</span>
               <span className="text-[12px] font-black truncate leading-none mb-1">{data.recipientName}</span>
               
-              {/* Phone Box Section */}
+              {/* Phone Box Section - CHANGED TO font-normal */}
               <div className="border border-black w-[100px] h-[16px] mb-1.5 shrink-0 flex items-center px-1 bg-white/50">
-                 <span className="text-[9.5px] font-bold truncate">{data.recipientPhone}</span>
+                 <span className="text-[9.5px] font-normal truncate">{data.recipientPhone}</span>
               </div>
 
-              {/* Recipient Address - LEFT ALIGNED, SUPPORTS 2-3 LINES */}
+              {/* Recipient Address - CHANGED TO font-normal */}
               <p 
-                className="text-[9px] font-bold leading-[1.1] text-left overflow-hidden pr-2"
+                className="text-[9px] font-normal leading-[1.1] text-left overflow-hidden pr-2"
                 style={{
                     display: '-webkit-box',
                     WebkitLineClamp: 3,
@@ -152,26 +152,27 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
               </p>
            </div>
            
-           {/* Pengirim Section - Shifted to the right by reducing width to 42% and adding padding */}
+           {/* Pengirim Section */}
            <div className="w-[42%] p-2 pl-3 flex flex-col z-10 overflow-hidden">
               <span className="text-[9px] font-black mb-0.5">Pengirim:</span>
               <span className="text-[10.5px] font-bold mb-0.5 truncate leading-none">{data.senderName}</span>
-              <span className="text-[9.5px] font-bold leading-tight">{data.senderPhone}</span>
-              {/* Sender City */}
-              <span className="text-[10px] font-black uppercase tracking-tight truncate leading-tight mt-0.5">{data.senderCity}</span>
+              {/* Sender Phone - CHANGED TO font-normal */}
+              <span className="text-[9.5px] font-normal leading-tight">{data.senderPhone}</span>
+              {/* Sender City - CHANGED TO font-normal */}
+              <span className="text-[10px] font-normal uppercase tracking-tight truncate leading-tight mt-0.5">{data.senderCity}</span>
            </div>
         </div>
 
-        {/* Row 4: Location Tags */}
+        {/* Row 4: Location Tags - ALL CHANGED TO font-normal */}
         <div className="flex gap-1 h-[24px] mt-0.5 shrink-0 px-1">
            <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden">
-              <span className="text-[9px] font-bold uppercase truncate">{data.district}</span>
+              <span className="text-[9px] font-normal uppercase truncate">{data.district}</span>
            </div>
            <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden">
-              <span className="text-[9px] font-bold uppercase truncate">{data.subDistrict}</span>
+              <span className="text-[9px] font-normal uppercase truncate">{data.subDistrict}</span>
            </div>
            <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden">
-              <span className="text-[9px] font-bold truncate">{data.village}</span>
+              <span className="text-[9px] font-normal truncate">{data.village}</span>
            </div>
         </div>
 
@@ -181,18 +182,21 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
               <div className="border border-black h-[22px] self-start flex items-center px-2 mb-0.5 bg-white ml-1">
                  <span className="text-[10px] font-black whitespace-nowrap">CASHLESS</span>
                  <div className="w-[1px] h-3 bg-black mx-2"></div>
-                 <span className="text-[8.5px] font-bold italic truncate">Penjual tidak perlu bayar ongkir ke Kurir</span>
+                 {/* Cashless Description - CHANGED TO font-normal */}
+                 <span className="text-[8.5px] font-normal italic truncate">Penjual tidak perlu bayar ongkir ke Kurir</span>
               </div>
 
               <div className="flex flex-col py-1 pl-1.5 gap-0.5 justify-center overflow-hidden">
                  <div className="flex items-center gap-3">
                     <div className="flex gap-1 items-baseline">
                       <span className="text-[9.5px] font-black">Berat:</span>
-                      <span className="text-[9.5px] font-bold">{data.weight}</span>
+                      {/* Weight - CHANGED TO font-normal */}
+                      <span className="text-[9.5px] font-normal">{data.weight}</span>
                     </div>
                     <div className="flex gap-1 items-baseline">
                       <span className="text-[9.5px] font-black whitespace-nowrap">COD Cek Dulu:</span>
-                      <span className="text-[9.5px] font-bold">{data.codCekDulu}</span>
+                      {/* COD Cek Dulu - CHANGED TO font-normal */}
+                      <span className="text-[9.5px] font-normal">{data.codCekDulu}</span>
                     </div>
                  </div>
                  <div className="flex gap-1 items-baseline">
