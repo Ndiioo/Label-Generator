@@ -30,9 +30,9 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
       }
     }
 
-    // Generate QR Code
-    if (qrCanvasRef.current && data.orderId) {
-      QRCode.toCanvas(qrCanvasRef.current, data.orderId, {
+    // Generate QR Code - Now using resiNumber instead of orderId
+    if (qrCanvasRef.current && data.resiNumber) {
+      QRCode.toCanvas(qrCanvasRef.current, data.resiNumber, {
         margin: 0,
         scale: 2,
         width: 80,
@@ -44,7 +44,7 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
         if (error) console.error("QR generation failed", error);
       });
     }
-  }, [data.resiNumber, data.orderId]);
+  }, [data.resiNumber]); // Re-generate when resiNumber changes
 
   return (
     <div className="label-font w-[100mm] h-[100mm] bg-white text-black relative p-0 flex flex-col overflow-hidden mx-auto select-none print:m-0 print:border-0 shadow-sm">
@@ -159,7 +159,7 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
            </div>
         </div>
 
-        {/* Location Tags Row (Kabupaten, Kecamatan, Kelurahan) - MOVED UP HERE */}
+        {/* Location Tags Row (Kabupaten, Kecamatan, Kelurahan) */}
         <div className="flex gap-1 h-[24px] shrink-0 px-1 border-t border-black border-dotted pt-1 mb-1">
            <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden bg-white">
               <span className="text-[9px] font-normal uppercase truncate">{data.district}</span>
@@ -172,7 +172,7 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
            </div>
         </div>
 
-        {/* Combined Metadata and QR Row - MOVED TO BOTTOM */}
+        {/* Combined Metadata and QR Row */}
         <div className="flex mt-0 shrink-0 pb-1.5">
            <div className="w-[70%] flex flex-col">
               {/* Cashless Block */}
@@ -202,12 +202,12 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
                     <span className="text-[9.5px] font-black shrink-0">No.Pesanan:</span>
                     <span className="text-[9.5px] font-bold truncate tracking-tight">{data.orderId}</span>
                  </div>
-                 {/* 1 Spasi below Order ID as requested */}
+                 {/* 1 Spasi below Order ID */}
                  <div className="h-[4px]"></div>
               </div>
            </div>
 
-           {/* QR Code Column with bottom padding */}
+           {/* QR Code Column */}
            <div className="w-[30%] flex items-start justify-center p-1 pb-4">
               <div className="w-full flex items-center justify-center mt-[-4px]">
                  <canvas 
