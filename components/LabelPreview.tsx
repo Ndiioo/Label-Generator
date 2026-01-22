@@ -30,12 +30,12 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
       }
     }
 
-    // Generate QR Code - Scaled to fit its allocated space
+    // Generate QR Code
     if (qrCanvasRef.current && data.orderId) {
       QRCode.toCanvas(qrCanvasRef.current, data.orderId, {
         margin: 0,
         scale: 2,
-        width: 65,
+        width: 80,
         color: {
           dark: '#000000',
           light: '#ffffff',
@@ -49,7 +49,7 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
   return (
     <div className="label-font w-[100mm] h-[100mm] bg-white text-black relative p-0 flex flex-col overflow-hidden mx-auto select-none print:m-0 print:border-0 shadow-sm">
       
-      {/* Outer Decorative Tracking Numbers - CHANGED TO font-normal */}
+      {/* Outer Decorative Tracking Numbers */}
       <div className="absolute top-0 left-0 right-0 h-[12px] flex items-center justify-between whitespace-nowrap bg-white z-30 overflow-hidden px-12">
         {Array(3).fill(0).map((_, i) => <span key={i} className="text-[6px] font-normal">{data.resiNumber}</span>)}
       </div>
@@ -118,7 +118,7 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
         <div className="border-t-[1.5px] border-black border-dotted mx-1 mt-0.5"></div>
 
         {/* Row 3: Address Content */}
-        <div className="flex flex-grow relative min-h-[110px]">
+        <div className="flex flex-grow relative min-h-[100px]">
            {/* Watermark */}
            <div className="absolute inset-0 flex items-center justify-center opacity-[0.08] z-0 pointer-events-none select-none">
              <span 
@@ -134,12 +134,10 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
               <span className="text-[9px] font-black mb-0.5">Penerima:</span>
               <span className="text-[12px] font-black truncate leading-none mb-1">{data.recipientName}</span>
               
-              {/* Phone Box Section - CHANGED TO font-normal */}
               <div className="border border-black w-[100px] h-[16px] mb-1.5 shrink-0 flex items-center px-1 bg-white/50">
                  <span className="text-[9.5px] font-normal truncate">{data.recipientPhone}</span>
               </div>
 
-              {/* Recipient Address - CHANGED TO font-normal */}
               <p 
                 className="text-[9px] font-normal leading-[1.1] text-left overflow-hidden pr-2"
                 style={{
@@ -156,46 +154,43 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
            <div className="w-[42%] p-2 pl-3 flex flex-col z-10 overflow-hidden">
               <span className="text-[9px] font-black mb-0.5">Pengirim:</span>
               <span className="text-[10.5px] font-bold mb-0.5 truncate leading-none">{data.senderName}</span>
-              {/* Sender Phone - CHANGED TO font-normal */}
               <span className="text-[9.5px] font-normal leading-tight">{data.senderPhone}</span>
-              {/* Sender City - CHANGED TO font-normal */}
               <span className="text-[10px] font-normal uppercase tracking-tight truncate leading-tight mt-0.5">{data.senderCity}</span>
            </div>
         </div>
 
-        {/* Row 4: Location Tags - ALL CHANGED TO font-normal */}
-        <div className="flex gap-1 h-[24px] mt-0.5 shrink-0 px-1">
-           <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden">
+        {/* Location Tags Row (Kabupaten, Kecamatan, Kelurahan) - MOVED UP HERE */}
+        <div className="flex gap-1 h-[24px] shrink-0 px-1 border-t border-black border-dotted pt-1 mb-1">
+           <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden bg-white">
               <span className="text-[9px] font-normal uppercase truncate">{data.district}</span>
            </div>
-           <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden">
+           <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden bg-white">
               <span className="text-[9px] font-normal uppercase truncate">{data.subDistrict}</span>
            </div>
-           <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden">
+           <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden bg-white">
               <span className="text-[9px] font-normal truncate">{data.village}</span>
            </div>
         </div>
 
-        {/* Combined Row 5 & 6: Cashless and Metadata with Re-aligned QR Code */}
-        <div className="flex mt-1 shrink-0">
-           <div className="w-[78%] flex flex-col">
-              <div className="border border-black h-[22px] self-start flex items-center px-2 mb-0.5 bg-white ml-1">
+        {/* Combined Metadata and QR Row - MOVED TO BOTTOM */}
+        <div className="flex mt-0 shrink-0 pb-1.5">
+           <div className="w-[70%] flex flex-col">
+              {/* Cashless Block */}
+              <div className="border border-black h-[22px] flex items-center px-3 mb-1 bg-white ml-1 w-fit">
                  <span className="text-[10px] font-black whitespace-nowrap">CASHLESS</span>
                  <div className="w-[1px] h-3 bg-black mx-2"></div>
-                 {/* Cashless Description - CHANGED TO font-normal */}
                  <span className="text-[8.5px] font-normal italic truncate">Penjual tidak perlu bayar ongkir ke Kurir</span>
               </div>
 
-              <div className="flex flex-col py-1 pl-1.5 gap-0.5 justify-center overflow-hidden">
+              {/* Package Metadata */}
+              <div className="flex flex-col pt-0.5 pb-1 pl-1.5 gap-0.5 justify-center overflow-hidden">
                  <div className="flex items-center gap-3">
                     <div className="flex gap-1 items-baseline">
                       <span className="text-[9.5px] font-black">Berat:</span>
-                      {/* Weight - CHANGED TO font-normal */}
                       <span className="text-[9.5px] font-normal">{data.weight}</span>
                     </div>
                     <div className="flex gap-1 items-baseline">
                       <span className="text-[9.5px] font-black whitespace-nowrap">COD Cek Dulu:</span>
-                      {/* COD Cek Dulu - CHANGED TO font-normal */}
                       <span className="text-[9.5px] font-normal">{data.codCekDulu}</span>
                     </div>
                  </div>
@@ -207,19 +202,23 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
                     <span className="text-[9.5px] font-black shrink-0">No.Pesanan:</span>
                     <span className="text-[9.5px] font-bold truncate tracking-tight">{data.orderId}</span>
                  </div>
+                 {/* 1 Spasi below Order ID as requested */}
+                 <div className="h-[4px]"></div>
               </div>
            </div>
 
-           <div className="w-[22%] flex items-start justify-center p-1">
+           {/* QR Code Column with bottom padding */}
+           <div className="w-[30%] flex items-start justify-center p-1 pb-4">
               <div className="w-full flex items-center justify-center mt-[-4px]">
                  <canvas 
                     ref={qrCanvasRef} 
                     className="object-contain"
-                    style={{ width: '60px', height: '60px' }}
+                    style={{ width: '75px', height: '75px' }}
                  />
               </div>
            </div>
         </div>
+
       </div>
     </div>
   );
