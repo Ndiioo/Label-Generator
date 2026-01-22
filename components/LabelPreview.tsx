@@ -76,7 +76,7 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
                   <path d="M58,55 C58,52 54,50 50,50 C44,50 42,54 42,58 C42,65 58,65 58,72 C58,76 56,80 50,80 C44,80 42,78 42,75" fill="none" stroke="white" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <span className="text-[#EE4D2D] text-[18px] font-bold tracking-tight -ml-0.5">Shopee</span>
+              <span className="text-[#EE4D2D] text-[18px] font-bold tracking-tight -ml-0.5" style={{ fontFamily: 'Inter, sans-serif' }}>Shopee</span>
            </div>
            <span className="text-[20px] font-black tracking-tight leading-none text-center flex-grow uppercase">{data.serviceType}</span>
            <div className="flex items-center justify-end shrink-0 w-[85px]">
@@ -119,33 +119,45 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
 
         {/* Row 3: Address Content */}
         <div className="flex flex-grow relative min-h-[110px]">
-           {/* Watermark - CENTERED */}
-           <div className="absolute inset-0 flex items-center justify-center opacity-[0.1] z-0 pointer-events-none">
-             <span className="text-[80px] font-black tracking-[0.1em] text-center w-full">{data.watermark}</span>
+           {/* Watermark */}
+           <div className="absolute inset-0 flex items-center justify-center opacity-[0.08] z-0 pointer-events-none select-none">
+             <span 
+                className="text-[100px] font-black tracking-[-0.05em] leading-none uppercase text-center"
+                style={{ fontFamily: 'Inter, sans-serif' }}
+             >
+                {data.watermark}
+             </span>
            </div>
 
-           {/* Penerima Section */}
-           <div className="w-1/2 p-2 flex flex-col z-10 overflow-hidden relative">
+           {/* Penerima Section - Expanded to 58% for more address space */}
+           <div className="w-[58%] p-2 flex flex-col z-10 overflow-hidden relative">
               <span className="text-[9px] font-black mb-0.5">Penerima:</span>
               <span className="text-[12px] font-black truncate leading-none mb-1">{data.recipientName}</span>
               
               {/* Phone Box Section */}
-              <div className="border border-black w-[100px] h-[16px] mb-1.5 shrink-0 flex items-center px-1">
+              <div className="border border-black w-[100px] h-[16px] mb-1.5 shrink-0 flex items-center px-1 bg-white/50">
                  <span className="text-[9.5px] font-bold truncate">{data.recipientPhone}</span>
               </div>
 
-              {/* Recipient Address - LEFT ALIGNED */}
-              <p className="text-[9px] font-bold leading-[1.2] text-left overflow-hidden">
+              {/* Recipient Address - LEFT ALIGNED, SUPPORTS 2-3 LINES */}
+              <p 
+                className="text-[9px] font-bold leading-[1.1] text-left overflow-hidden pr-2"
+                style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                }}
+              >
                  {data.recipientAddress}
               </p>
            </div>
            
-           {/* Pengirim Section */}
-           <div className="w-1/2 p-2 flex flex-col z-10 overflow-hidden">
+           {/* Pengirim Section - Shifted to the right by reducing width to 42% and adding padding */}
+           <div className="w-[42%] p-2 pl-3 flex flex-col z-10 overflow-hidden">
               <span className="text-[9px] font-black mb-0.5">Pengirim:</span>
               <span className="text-[10.5px] font-bold mb-0.5 truncate leading-none">{data.senderName}</span>
-              <span className="text-[9.5px] font-bold mb-0.5">{data.senderPhone}</span>
-              {/* Sender City - Positioned directly under phone, removed mt-auto */}
+              <span className="text-[9.5px] font-bold leading-tight">{data.senderPhone}</span>
+              {/* Sender City */}
               <span className="text-[10px] font-black uppercase tracking-tight truncate leading-tight mt-0.5">{data.senderCity}</span>
            </div>
         </div>
@@ -159,23 +171,19 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
               <span className="text-[9px] font-bold uppercase truncate">{data.subDistrict}</span>
            </div>
            <div className="flex-grow border border-black flex items-center justify-center px-1 overflow-hidden">
-              {/* Village Tag - Follows user input casing (removed uppercase class) */}
               <span className="text-[9px] font-bold truncate">{data.village}</span>
            </div>
         </div>
 
         {/* Combined Row 5 & 6: Cashless and Metadata with Re-aligned QR Code */}
         <div className="flex mt-1 shrink-0">
-           {/* Left Part (78%) */}
            <div className="w-[78%] flex flex-col">
-              {/* Cashless Box - FIT TO TEXT */}
               <div className="border border-black h-[22px] self-start flex items-center px-2 mb-0.5 bg-white ml-1">
                  <span className="text-[10px] font-black whitespace-nowrap">CASHLESS</span>
                  <div className="w-[1px] h-3 bg-black mx-2"></div>
                  <span className="text-[8.5px] font-bold italic truncate">Penjual tidak perlu bayar ongkir ke Kurir</span>
               </div>
 
-              {/* Metadata area */}
               <div className="flex flex-col py-1 pl-1.5 gap-0.5 justify-center overflow-hidden">
                  <div className="flex items-center gap-3">
                     <div className="flex gap-1 items-baseline">
@@ -198,7 +206,6 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
               </div>
            </div>
 
-           {/* Right Part (22%) - QR Code raised to align with Cashless top */}
            <div className="w-[22%] flex items-start justify-center p-1">
               <div className="w-full flex items-center justify-center mt-[-4px]">
                  <canvas 
