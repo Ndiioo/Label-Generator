@@ -1,0 +1,5 @@
+{
+  "name": "Shopee Express Label Generator",
+  "description": "A professional shipping label generator tool designed to replicate Shopee Express (SPX) labels with real-time preview, barcode generation, and print-ready formatting.",
+  "requestFramePermissions": []
+}
