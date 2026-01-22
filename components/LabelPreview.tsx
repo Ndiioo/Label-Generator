@@ -66,18 +66,77 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
       {/* Main Border Box Wrapper */}
       <div className="m-[12px] flex flex-col flex-grow border-[1.8px] border-black relative z-10 overflow-hidden">
         
-        {/* Row 1: Header */}
-        <div className="flex items-center justify-between px-2 pt-0.5 pb-0.5">
-           <div className="flex items-center gap-1">
-              <div className="bg-[#ee4d2d] rounded-sm p-0.5 w-4.5 h-4.5 flex items-center justify-center shrink-0">
-                <svg viewBox="0 0 24 24" className="w-3 h-3 fill-white"><path d="M19,6.5L17.5,4H6.5L5,6.5V19a2,2,0,0,0,2,2H17a2,2,0,0,0,2-2V6.5M7,19V11H17v8H7M17,9H7V6.5h10V9Z"/></svg>
+        {/* Row 1: Header with Official-style Logos */}
+        <div className="flex items-center justify-between px-2 pt-1.5 pb-1">
+           {/* Shopee Logo Section */}
+           <div className="flex items-center gap-1 shrink-0">
+              <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+                <svg viewBox="0 0 100 100" className="w-full h-full">
+                  {/* Shopping Bag Handle */}
+                  <path d="M30,30 C30,15 70,15 70,30" fill="none" stroke="#EE4D2D" strokeWidth="8" strokeLinecap="round" />
+                  {/* Shopping Bag Body */}
+                  <path d="M20,35 L80,35 C83,35 85,37 85,40 L80,85 C79,90 75,94 70,94 L30,94 C25,94 21,90 20,85 L15,40 C15,37 17,35 20,35 Z" fill="#EE4D2D" />
+                  {/* Letter S - FIXED DIRECTION */}
+                  <path 
+                    d="M58,55 C58,52 54,50 50,50 C44,50 42,54 42,58 C42,65 58,65 58,72 C58,76 56,80 50,80 C44,80 42,78 42,75" 
+                    fill="none" 
+                    stroke="white" 
+                    strokeWidth="7" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                  />
+                </svg>
               </div>
-              <span className="text-[#ee4d2d] text-[16px] font-black tracking-tighter" style={{ fontFamily: 'Inter' }}>Shopee</span>
+              <span className="text-[#EE4D2D] text-[18px] font-bold tracking-tight -ml-0.5" style={{ fontFamily: 'Inter, sans-serif' }}>Shopee</span>
            </div>
-           <span className="text-[24px] font-black tracking-tight leading-none">{data.serviceType}</span>
-           <div className="flex flex-col items-end">
-              <div className="text-red-600 font-black italic text-[26px] leading-none tracking-tighter" style={{ fontFamily: 'Inter' }}>SPX</div>
-              <div className="text-[4px] bg-red-600 text-white font-black px-1 py-0.5 tracking-[0.2em] -mt-1 uppercase leading-none">EXPRESS</div>
+
+           {/* Service Type */}
+           <span className="text-[20px] font-black tracking-tight leading-none text-center flex-grow uppercase">{data.serviceType}</span>
+
+           {/* SPX Express Logo Section - REDUCED SIZE */}
+           <div className="flex items-center justify-end shrink-0 w-[85px]">
+              <svg viewBox="0 0 240 100" className="w-full h-auto">
+                 {/* SPX Text - Heavily Italicized and Bold */}
+                 <text 
+                    x="10" 
+                    y="70" 
+                    fill="#EE4D2D" 
+                    style={{ 
+                        fontFamily: 'Inter, sans-serif', 
+                        fontSize: '85px', 
+                        fontWeight: 900, 
+                        fontStyle: 'italic',
+                        letterSpacing: '-2px'
+                    }}
+                 >
+                    SPX
+                 </text>
+                 
+                 {/* Stylized Underline */}
+                 <g transform="translate(10, 80)">
+                    {/* Dash 1 */}
+                    <path d="M0 0 L15 0 L10 12 L-5 12 Z" fill="#EE4D2D" />
+                    {/* Dash 2 */}
+                    <path d="M22 0 L37 0 L32 12 L17 12 Z" fill="#EE4D2D" />
+                    {/* Long Main Bar */}
+                    <path d="M44 0 L140 0 L135 12 L39 12 Z" fill="#EE4D2D" />
+                    
+                    {/* EXPRESS text next to the bar */}
+                    <text 
+                        x="145" 
+                        y="10" 
+                        fill="#EE4D2D" 
+                        style={{ 
+                            fontFamily: 'Inter, sans-serif', 
+                            fontSize: '18px', 
+                            fontWeight: 900, 
+                            fontStyle: 'italic'
+                        }}
+                    >
+                        EXPRESS
+                    </text>
+                 </g>
+              </svg>
            </div>
         </div>
 
@@ -158,7 +217,7 @@ const LabelPreview: React.FC<LabelPreviewProps> = ({ data }) => {
            </div>
         </div>
 
-        {/* Row 6: Final Metadata & QR Section - Balanced Proportions */}
+        {/* Row 6: Final Metadata & QR Section */}
         <div className="flex mt-0.5 shrink-0 h-[75px]">
            <div className="w-[80%] flex flex-col py-0.5 pl-1.5 gap-0.5 justify-center overflow-hidden">
               <div className="flex items-center gap-3">
