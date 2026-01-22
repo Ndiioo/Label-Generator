@@ -27,7 +27,7 @@ export const INITIAL_LABEL_DATA: LabelData = {
   resiNumber: "SPXID064356436531",
   serviceType: "ECO",
   recipientName: "Risna",
-  recipientPhone: "",
+  recipientPhone: "081234567890",
   recipientAddress: "Mesjid Babul Jannah, Jalan Dusun Suggumanai, Biringbulu, BIRINGBULU, KAB. GOWA, SULAWESI SELATAN",
   senderName: "Kiara Jewelry",
   senderPhone: "6289692134050",
