@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { LabelData } from '../types';
+import { LabelData } from '../types.ts';
 
 interface LabelFormProps {
   data: LabelData;

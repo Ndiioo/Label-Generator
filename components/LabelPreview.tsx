@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { LabelData } from '../types';
+import { LabelData } from '../types.ts';
 import JsBarcode from 'jsbarcode';
 import QRCode from 'qrcode';
 

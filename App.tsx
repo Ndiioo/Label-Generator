@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
-import { LabelData, INITIAL_LABEL_DATA } from './types';
-import LabelForm from './components/LabelForm';
-import LabelPreview from './components/LabelPreview';
+import { LabelData, INITIAL_LABEL_DATA } from './types.ts';
+import LabelForm from './components/LabelForm.tsx';
+import LabelPreview from './components/LabelPreview.tsx';
 import { Printer, RefreshCw, Package } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -84,8 +84,6 @@ const App: React.FC = () => {
           </div>
         </div>
       </main>
-
-      {/* Print Overlay CSS is in index.html */}
     </div>
   );
 };
